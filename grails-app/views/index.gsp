@@ -58,7 +58,7 @@
 				</h3>
 				
 				<!-- Nice place to describe your site in a sentence or two -->
-				<p><g:link controller="login" action="auth" class="btn btn-default btn-lg">Soy Socio</g:link></p>
+				<p><g:link controller="profile" action="index" class="btn btn-default btn-lg">Soy Socio</g:link></p>
 	
 			</div> <!-- /col -->
 		</div> <!-- /row -->
