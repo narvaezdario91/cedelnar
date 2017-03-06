@@ -9,3 +9,4 @@
 //= require bootstrap/dist/js/bootstrap.min.js
 //= require fastclick/lib/fastclick.js
 //= require nprogress/nprogress.js
+//= require pnotify/pnotify.custom.min.js

@@ -253,7 +253,7 @@
 			<!-- /footer content -->
 		</div>
 	</div>
-	<asset:javascript src="../libs/build/js/custom.min.js" />
+	<asset:javascript src="../libs/build/js/custom.js" />
 
 </body>
 </html>

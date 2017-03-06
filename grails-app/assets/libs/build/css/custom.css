@@ -3532,6 +3532,7 @@ form:after {
     margin: 20px 0;
     position: relative
 }
+.login_content form input[type="number"],
 .login_content form input[type="text"],
 .login_content form input[type="email"],
 .login_content form input[type="password"] {

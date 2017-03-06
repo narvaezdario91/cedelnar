@@ -5,7 +5,7 @@ import grails.plugin.springsecurity.annotation.Secured
 class RegisterController {
 
     def create() { 
-		def roleInstance = Role.findByAuthority('ROLE_ADMIN')
+		def roleInstance = Role.findByAuthority('ROLE_USER')
 		def userInstance = new User(params)
 		if (!userInstance.save(flush:true)) {
 			render template:'../errorInstance', model:[errorInstance:userInstance], status:400

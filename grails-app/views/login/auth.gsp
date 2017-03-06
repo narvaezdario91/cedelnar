@@ -11,8 +11,6 @@
 
 <asset:stylesheet src="application.css" />
 <asset:javascript src="application.js" />
-<asset:stylesheet src="pnotify/pnotify.custom.min.css"/>
-<asset:javascript src="pnotify/pnotify.custom.min.js"/>
 </head>
 
 <body class="login">
@@ -86,7 +84,7 @@
 								value="" />
 						</div>
 						<div>
-							<input type="text" class="form-control" placeholder="Cédula"
+							<input type="number" class="form-control" placeholder="Cédula"
 								required="" name="username" value="" />
 						</div>
 						<div>
@@ -99,8 +97,7 @@
 								value="" />
 						</div>
 						<div>
-							<button type="submit" class="btn btn-default submit"
-								href="index.html">Enviar</button>
+							<button type="submit" class="btn btn-default submit">Enviar</button>
 						</div>
 
 						<div class="clearfix"></div>

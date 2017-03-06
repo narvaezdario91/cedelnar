@@ -12,4 +12,5 @@
 *= require nprogress/nprogress.css
 *= require build/css/custom.css
 *= require animate.css/animate.min.css
+*= require pnotify/pnotify.custom.min.css
 */

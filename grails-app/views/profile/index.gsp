@@ -6,7 +6,8 @@
 <asset:stylesheet src="bootstrap-daterangepicker/daterangepicker.css" />
 <asset:javascript src="raphael/raphael.min.js" />
 <asset:javascript src="morris.js/morris.min.js" />
-<asset:javascript src="bootstrap-progressbar/bootstrap-progressbar.min.js" />
+<asset:javascript
+	src="bootstrap-progressbar/bootstrap-progressbar.min.js" />
 <asset:javascript src="moment/min/moment.min.js" />
 <asset:javascript src="bootstrap-daterangepicker/daterangepicker.js" />
 </head>
@@ -60,25 +61,21 @@
 										<!-- Current avatar -->
 										<asset:image img class="img-responsive avatar-view"
 											src="images/picture.jpg" alt="Avatar"
-											title="Change the avatar"/>
+											title="Change the avatar" />
 									</div>
 								</div>
-								<h3>Samuel Doe</h3>
+								<h3 id="profile_fullName">
+									${userInstance.fullName}
+								</h3>
 
 								<ul class="list-unstyled user_data">
-									<li><i class="fa fa-map-marker user-profile-icon"></i> San
-										Francisco, California, USA</li>
+									<li><i class="fa fa-credit-card user-profile-icon"></i> <span id="profile_username">${userInstance.username}</span></li>
+									<li><i class="fa fa-envelope user-profile-icon"></i> <span id="profile_email">${userInstance.email}</span></li>
 
-									<li><i class="fa fa-briefcase user-profile-icon"></i>
-										Software Engineer</li>
-
-									<li class="m-top-xs"><i
-										class="fa fa-external-link user-profile-icon"></i> <a
-										href="http://www.kimlabs.com/profile/" target="_blank">www.kimlabs.com</a>
-									</li>
 								</ul>
 
-								<a class="btn btn-success"><i class="fa fa-edit m-right-xs"></i>Edit
+								<a class="btn btn-success" data-toggle="modal"
+									data-target="#edit-modal"><i class="fa fa-edit m-right-xs"></i>Edit
 									Profile</a> <br />
 
 								<!-- start skills -->
@@ -152,8 +149,8 @@
 
 											<!-- start recent activity -->
 											<ul class="messages">
-												<li><asset:image img src="images/img.jpg" class="avatar"
-													alt="Avatar"/>
+												<li><asset:image img src="images/img.jpg"
+														class="avatar" alt="Avatar" />
 													<div class="message_date">
 														<h3 class="date text-info">24</h3>
 														<p class="month">May</p>
@@ -172,7 +169,7 @@
 														</p>
 													</div></li>
 												<li><asset:image src="images/img.jpg" class="avatar"
-													alt="Avatar"/>
+														alt="Avatar" />
 													<div class="message_date">
 														<h3 class="date text-error">21</h3>
 														<p class="month">May</p>
@@ -190,7 +187,7 @@
 														</p>
 													</div></li>
 												<li><asset:image src="images/img.jpg" class="avatar"
-													alt="Avatar"/>
+														alt="Avatar" />
 													<div class="message_date">
 														<h3 class="date text-info">24</h3>
 														<p class="month">May</p>
@@ -209,7 +206,7 @@
 														</p>
 													</div></li>
 												<li><asset:image src="images/img.jpg" class="avatar"
-													alt="Avatar"/>
+														alt="Avatar" />
 													<div class="message_date">
 														<h3 class="date text-error">21</h3>
 														<p class="month">May</p>
@@ -318,5 +315,51 @@
 		</div>
 	</div>
 
+	<!-- Edit modal -->
+	<div id="edit-modal" class="modal fade" tabindex="-1" role="dialog"
+		aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">×</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel2">Editar Perfil</h4>
+				</div>
+				<div class="modal-body">
+					<section class="login_content">
+					<h4>Información General</h4>
+						<g:form controller="profile" action="editUser" id="editUser"
+							name="editUser">
+							<g:hiddenField name="idUser" value="${userInstance.id}"/>
+							<div>
+								<input type="text" class="form-control"
+									placeholder="Nombre Completo" required="" name="fullName"
+									value="${userInstance.fullName}" />
+							</div>
+							<div>
+								<input type="number" class="form-control" placeholder="Cédula"
+									required="" name="username" value="${userInstance.username}" readonly="readonly"/>
+							</div>
+							<div>
+								<input type="email" class="form-control" placeholder="Email"
+									required="" name="email" value="${userInstance.email}" />
+							</div>
+
+							<div class="clearfix"></div>
+						</g:form>
+					</section>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+					<button type="button" class="btn btn-primary" onclick="$('#editUser').trigger('submit');">Guardar cambios</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<asset:javascript src="profile/profile.js" />
 </body>
 </html>
