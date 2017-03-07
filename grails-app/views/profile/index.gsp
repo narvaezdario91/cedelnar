@@ -10,8 +10,12 @@
 	src="bootstrap-progressbar/bootstrap-progressbar.min.js" />
 <asset:javascript src="moment/min/moment.min.js" />
 <asset:javascript src="bootstrap-daterangepicker/daterangepicker.js" />
+<asset:stylesheet src="dropzone/dist/min/dropzone.min.js" />
+<asset:javascript src="dropzone/dist/min/dropzone.min.js"/>
+<asset:stylesheet src="profile/profile.css"/>
 </head>
 <body>
+<g:hiddenField name="idUser" value="${userInstance.id}"/>
 	<div class="right_col" role="main">
 		<div class="">
 			<div class="page-title">
@@ -57,11 +61,21 @@
 						<div class="x_content">
 							<div class="col-md-3 col-sm-3 col-xs-12 profile_left">
 								<div class="profile_img">
-									<div id="crop-avatar">
+									<div id="crop-avatar" class="photoProfileContainer">
 										<!-- Current avatar -->
-										<asset:image img class="img-responsive avatar-view"
-											src="images/picture.jpg" alt="Avatar"
-											title="Change the avatar" />
+										<g:if test="${!userInstance.photo}">
+											<asset:image id="photo-profile" class="img-responsive avatar-view"
+											src="images/user.png" alt="Avatar"
+											title="Change the avatar" data-toggle="modal"
+											data-target="#photoProfile-modal" />
+										</g:if>
+										<g:else>
+											<img id="photo-profile" class="img-responsive avatar-view"
+											src="${createLink(uri:'/')+userInstance?.photo?.urlPicture}" alt="Avatar"
+											title="Change the avatar" data-toggle="modal"
+											data-target="#photoProfile-modal" >
+										</g:else>
+										
 									</div>
 								</div>
 								<h3 id="profile_fullName">
@@ -75,8 +89,8 @@
 								</ul>
 
 								<a class="btn btn-success" data-toggle="modal"
-									data-target="#edit-modal"><i class="fa fa-edit m-right-xs"></i>Edit
-									Profile</a> <br />
+									data-target="#edit-modal"><i class="fa fa-edit m-right-xs"></i> Editar
+									Perfil</a> <br />
 
 								<!-- start skills -->
 								<h4>Skills</h4>
@@ -149,7 +163,7 @@
 
 											<!-- start recent activity -->
 											<ul class="messages">
-												<li><asset:image img src="images/img.jpg"
+												<li><asset:image src="images/img.jpg"
 														class="avatar" alt="Avatar" />
 													<div class="message_date">
 														<h3 class="date text-info">24</h3>
@@ -360,6 +374,33 @@
 			</div>
 		</div>
 	</div>
+	
+	<!-- Edit photoProfile -->
+	<div id="photoProfile-modal" class="modal fade" tabindex="-1" role="dialog"
+		aria-hidden="true">
+		<div class="modal-dialog modal-sm">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">×</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel2">Cambiar Foto de Perfil</h4>
+				</div>
+				<div class="modal-body">
+					<g:form controller="profile" action="chagePhoto" class="dropzone form-dropProfile" >
+					</g:form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+					<button type="button" class="btn btn-primary" id="changePhotoProfile">Guardar cambios</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	
+	
 	<asset:javascript src="profile/profile.js" />
 </body>
 </html>

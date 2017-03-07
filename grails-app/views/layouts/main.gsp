@@ -19,7 +19,7 @@
 </head>
 
 <body class="nav-md">
-<g:hiddenField name="urlBase" value="${createLink(uri:'/')}"/>
+	<g:hiddenField name="urlBase" value="${createLink(uri:'/')}" />
 	<div class="container body">
 		<div class="main_container">
 			<div class="col-md-3 left_col">
@@ -32,14 +32,22 @@
 					<div class="clearfix"></div>
 
 					<!-- menu profile quick info -->
-					<div class="profile clearfix">
+					<div class="profile clearfix photoProfileContainer"
+						id="profile_picContainer">
 						<div class="profile_pic">
-							<asset:image src="images/img.jpg" alt="..."
-								class="img-circle profile_img" />
+							<g:if test="${!userInstance.photo}">
+								<asset:image class="img-circle profile_img"
+									src="images/user.png" alt="Avatar" id="imagenPrueba" />
+							</g:if>
+							<g:else>
+								<img class="img-circle profile_img"
+									src="${createLink(uri:'/')+userInstance?.photo?.urlPicture}"
+									alt="Avatar" id="imagenPrueba">
+							</g:else>
 						</div>
 						<div class="profile_info">
 							<span>Welcome,</span>
-							<h2>John Doe</h2>
+							<h2>${userInstance.fullName}</h2>
 						</div>
 						<div class="clearfix"></div>
 					</div>
@@ -177,9 +185,17 @@
 
 						<ul class="nav navbar-nav navbar-right">
 							<li class=""><a href="javascript:;"
-								class="user-profile dropdown-toggle" data-toggle="dropdown"
-								aria-expanded="false"> <asset:image src="images/img.jpg"
-										alt="" />John Doe <span class=" fa fa-angle-down"></span>
+								class="user-profile dropdown-toggle photoProfileContainer" data-toggle="dropdown"
+								aria-expanded="false" id="userPhoto-nav"> 
+								<g:if test="${!userInstance.photo}">
+									<asset:image src="images/user.png" alt="Avatar" />
+								</g:if> 
+								<g:else>
+									<img src="${createLink(uri:'/')+userInstance?.photo?.urlPicture}" alt="Avatar" >
+								</g:else> 
+								
+								${userInstance.fullName} <span
+									class=" fa fa-angle-down"></span>
 							</a>
 								<ul class="dropdown-menu dropdown-usermenu pull-right">
 									<li><a href="javascript:;"> Profile</a></li>

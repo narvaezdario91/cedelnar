@@ -1,7 +1,8 @@
 package com.narvaezjdario
 
-class Prueba {
-
+class Picture {
+	String urlPicture
+	String name
     static constraints = {
     }
 }
